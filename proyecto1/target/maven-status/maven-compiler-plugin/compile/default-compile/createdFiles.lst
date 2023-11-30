@@ -1,0 +1,4 @@
+org\banxico\proyecto1\controller\ActorController.class
+org\banxico\proyecto1\dao\ActorDao.class
+org\banxico\proyecto1\entity\Actor.class
+org\banxico\proyecto1\dao\ConnectionUtil.class
