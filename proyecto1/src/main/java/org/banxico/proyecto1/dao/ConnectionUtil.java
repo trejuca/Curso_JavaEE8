@@ -2,7 +2,9 @@ package org.banxico.proyecto1.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  * Clase utilitaria para gestionar la conexion 
@@ -12,13 +14,25 @@ import java.sql.SQLException;
  */
 public class ConnectionUtil {
 
-	private static final String URL = "jdbc:mysql://127.0.0.1/sakila";
-	private static final String USER = "root";
-	private static final String PASSWORD = "hola123";
+	private static final String URL = 
+			"jdbc:sqlite:C:\\bases\\DB.Browser.for.SQLite-3.12.2-win64\\sakila.db";
+	
+	//private static final String USER = "sa";
+	//private static final String PASSWORD = "hola123.";
+	
+	public static void main(String[] args) throws SQLException {
+		Connection con = ConnectionUtil.getConnection();
+		Statement st = con.createStatement();
+		ResultSet rs = st.executeQuery("select * from actor");
+		
+		while(rs.next()) {
+			System.out.println(rs.getString("first_name") + ", " + rs.getString("last_name"));
+		}
+	}
 	
 	static {
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
+			Class.forName("org.sqlite.JDBC");
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -27,7 +41,7 @@ public class ConnectionUtil {
 	
 	public static Connection getConnection() {
 		try {
-			return DriverManager.getConnection(URL, USER, PASSWORD);
+			return DriverManager.getConnection(URL);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

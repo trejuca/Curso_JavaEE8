@@ -83,6 +83,7 @@ public class ActorDao {
 		}
 	}
 	
+
 	public static void update(Actor actor) {
 		
 		String query = "UPDATE actor SET "
@@ -106,6 +107,35 @@ public class ActorDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public static Actor findById(Integer actorId) {
+		
+		String query = "SELECT * FROM actor WHERE actor_id = ?";
+		Actor actor = new Actor();
+		
+		try {
+			Connection connection = ConnectionUtil.getConnection();
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setInt(1, actorId);
+			
+			ResultSet rs = statement.executeQuery();
+			
+			
+			while (rs.next()) {
+				actor.setActorId(rs.getInt("actor_id"));
+				actor.setFirstName(rs.getString("first_name"));
+				actor.setLastName(rs.getString("last_name"));
+			}
+			
+			statement.close();
+			connection.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return actor;
 	}
 	
 }
