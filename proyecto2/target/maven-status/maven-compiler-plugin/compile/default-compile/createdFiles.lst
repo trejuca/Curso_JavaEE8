@@ -1,0 +1,7 @@
+org\banxico\proyecto2\repository\CustomerFacadeLocal.class
+org\banxico\proyecto2\repository\CustomerFacade.class
+org\banxico\proyecto2\controller\CustomerController.class
+org\banxico\proyecto2\entity\Customer.class
+org\banxico\proyecto2\service\CustomerService.class
+org\banxico\proyecto2\repository\AbstractFacade.class
+org\banxico\proyecto2\service\CustomerServiceImpl.class

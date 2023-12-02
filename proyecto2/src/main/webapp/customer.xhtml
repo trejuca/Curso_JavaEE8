@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	
+	<h:body>
+		<div id="formulario">
+			<h:form>
+				<h:panelGrid columns="2">
+					<h:outputText value="Nombre:" />
+					<h:inputText id="first_name" value="#{customerController.firstName}"/>
+					<h:outputText value="Apellido" />
+					<h:inputText id="last_name" value="#{customerController.lastName}"/>
+					<h:outputText value="Correo electrónico" />
+					<h:inputText id="email" value="#{customerController.email}"/>
+					<h:commandButton value="Guardar" action="#{customerController.save()}"/>
+				</h:panelGrid>
+			</h:form>
+		</div>
+
+	</h:body>
+</html>

@@ -1,0 +1,26 @@
+package org.banxico.proyecto2.repository;
+
+import org.banxico.proyecto2.entity.Customer;
+
+import jakarta.ejb.Stateless;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
+
+@Stateless
+public class CustomerFacade extends AbstractFacade<Customer>
+	implements CustomerFacadeLocal {
+
+	@PersistenceContext
+	private EntityManager em;
+	
+	public CustomerFacade() {
+		super(Customer.class);
+	}
+	
+	@Override
+	public EntityManager getEntityManager() {
+		return em;
+	}
+}
