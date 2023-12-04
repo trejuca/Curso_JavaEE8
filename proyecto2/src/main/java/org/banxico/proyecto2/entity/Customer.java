@@ -17,6 +17,9 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "customer")
+@NamedQuery(
+		name = "Customer.findMax",
+		query = "SELECT max(c.customerId) FROM Customer c")
 public class Customer {
 
 	@Id
@@ -35,9 +38,9 @@ public class Customer {
 	private Integer addressId;
 	@Column
 	private Character active;
-	@Transient
+	@Column(name = "create_date")
 	private Date createDate;
-	@Transient
+	@Column(name = "last_update")
 	private Date lastUpdate;
 	
 }

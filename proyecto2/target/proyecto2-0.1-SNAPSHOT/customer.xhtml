@@ -17,38 +17,6 @@
 				</h:panelGrid>
 			</h:form>
 		</div>
-		<div id="tabla">
-			<h:dataTable value="#{customerController.customersList}" var="customer">
-				<h:column>
-					<f:facet>Id</f:facet>
-					<h:outputText value="#{customer.customerId}" />
-				</h:column>
-				<h:column>
-					<f:facet>Primer Nombre</f:facet>
-					<h:outputText value="#{customer.firstName}" />
-				</h:column>
-				<h:column>
-					<f:facet>Apellido</f:facet>
-					<h:outputText value="#{customer.lastName}" />
-				</h:column>
-				<h:column>
-					<f:facet>Correo electronico</f:facet>
-					<h:outputText value="#{customer.email}" />
-				</h:column>
-				<h:column>
-					<f:facet>Direccion</f:facet>
-					<h:outputText value="#{customer.addressId}" />
-				</h:column>
-				<h:column>
-					<f:facet>Activo</f:facet>
-					<h:outputText value="#{customer.active}" />
-				</h:column>
-				<h:column>
-					<h:commandLink action="#{customerController.delete(customer.customerId)}">
-						<h:outputText value="Eliminar" />
-					</h:commandLink>
-				</h:column>
-			</h:dataTable>
-		</div>
+
 	</h:body>
 </html>

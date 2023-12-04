@@ -56,13 +56,19 @@ public abstract class AbstractFacade<T> {
 	}
 	
 	public List<T> findRange(int[] range) {
-		CriteriaQuery criteria = getEntityManager().getCriteriaBuilder().createQuery();
+		/*CriteriaQuery criteria = getEntityManager().getCriteriaBuilder().createQuery();
 		criteria.select(criteria.from(entityClass));
 		
 		
 		Query query = getEntityManager().createQuery(criteria);
 		query.setMaxResults(range[0]);
-		query.setFirstResult(range[1]);
+		query.setFirstResult(range[1]);*/
+		
+		Query query =getEntityManager().createNativeQuery(
+				"SELECT * FROM customer LIMIT ?1 OFFSET ?2", entityClass);
+		
+		query.setParameter(1, range[0]);
+		query.setParameter(2, range[1]);
 		
 		return query.getResultList();
 	}
@@ -76,5 +82,10 @@ public abstract class AbstractFacade<T> {
 		Query query = getEntityManager().createQuery(criteria);
 		
 		return (int)query.getSingleResult();
+	}
+	
+	public Integer findMax(String namedQuery) {
+		return getEntityManager().createNamedQuery(namedQuery, Integer.class)
+				.getSingleResult();
 	}
 }
