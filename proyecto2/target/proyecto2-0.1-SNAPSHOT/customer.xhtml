@@ -2,21 +2,93 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
-	
-	<h:body>
-		<div id="formulario">
-			<h:form>
-				<h:panelGrid columns="2">
-					<h:outputText value="Nombre:" />
-					<h:inputText id="first_name" value="#{customerController.firstName}"/>
-					<h:outputText value="Apellido" />
-					<h:inputText id="last_name" value="#{customerController.lastName}"/>
-					<h:outputText value="Correo electrónico" />
-					<h:inputText id="email" value="#{customerController.email}"/>
-					<h:commandButton value="Guardar" action="#{customerController.save()}"/>
-				</h:panelGrid>
-			</h:form>
-		</div>
 
-	</h:body>
+<h:body>
+	<div id="formulario">
+		<h:form>
+			<h:panelGrid columns="2">
+				<h:outputText value="#{label['customer.fisrtName']}" />
+				<h:inputText id="first_name" value="#{customerController.firstName}" />
+				<h:outputText value="Apellido" />
+				<h:inputText id="last_name" value="#{customerController.lastName}" />
+				<h:outputText value="Correo electrónico" />
+				<h:inputText id="email" value="#{customerController.email}" />
+				<h:outputText value="Direccion (completa)" />
+				<h:inputText id="address" value="#{customerController.address.address}" />
+				<h:outputText value="Ciudad" />
+				<h:selectOneMenu value="#{customerController.address.cityId}">
+					<f:selectItems
+						value="#{customerController.citiesList}"
+						var="city"
+						itemValue="#{city.cityId}" 
+						itemLabel="#{city.city}"/>
+				</h:selectOneMenu>
+				<h:outputText value="Distrito" />
+				<h:inputText id="district" value="#{customerController.address.district}" />
+				<h:outputText value="Codigo postal" />
+				<h:inputText id="postal_code" value="#{customerController.address.postalCode}" />
+				<h:outputText value="Telefono" />
+				<h:inputText id="phone" value="#{customerController.address.phone}" />
+				<h:commandButton value="Guardar"
+					action="#{customerController.save()}" />
+				<h:inputHidden value="#{customerController.customerId}"/>
+			</h:panelGrid>
+		</h:form>
+	</div>
+	<div id="table">
+		<h:form>
+			<h:dataTable value="#{customerController.customersList}"
+				var="customer">
+				<h:column>
+					<f:facet name="header">Id</f:facet>
+					<h:outputText value="#{customer.customerId}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Primer Nombre</f:facet>
+					<h:outputText value="#{customer.firstName}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Apellido</f:facet>
+					<h:outputText value="#{customer.lastName}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Correo electronico</f:facet>
+					<h:outputText value="#{customer.email}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Dirección</f:facet>
+					<h:outputText value="#{customer.address.address}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Activo</f:facet>
+					<h:outputText value="#{customer.active}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Acciones</f:facet>
+					<h:commandLink
+						id="deletelink"
+						action="#{customerController.delete(customer.customerId)}">
+						<h:outputText value="Eliminar" />
+					</h:commandLink>
+					<h:commandLink
+						id="updatelink"
+						action="#{customerController.loadCustomer(customer.customerId)}">
+						<h:outputText value="Actualizar" />
+					</h:commandLink>
+				</h:column>
+			</h:dataTable>
+			<div id="botones">
+				<h:commandButton value="Primero"
+					action="#{customerController.firstPage()}" />
+				<h:commandButton value="Anterior"
+					action="#{customerController.previousPage()}" />
+				<h:commandButton value="Siguiente"
+					action="#{customerController.nextPage()}" />
+				<h:commandButton value="Ultimo"
+					action="#{customerController.lastPage()}" />
+			</div>
+			<h:inputHidden value="#{customerController.currentPage}"/>
+		</h:form>
+	</div>
+</h:body>
 </html>

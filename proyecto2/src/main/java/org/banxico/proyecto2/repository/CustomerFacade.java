@@ -27,6 +27,7 @@ public class CustomerFacade extends AbstractFacade<Customer>
 	@Override
 	public void save(Customer entity) {
 		entity.setCustomerId(super.findMax("Customer.findMax") + 1);
+		entity.getAddress().setAddressId(super.findMax("Address.findMax") + 1);
 		super.save(entity);
 	}
 }

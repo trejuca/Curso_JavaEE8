@@ -7,14 +7,31 @@
 	<div id="formulario">
 		<h:form>
 			<h:panelGrid columns="2">
-				<h:outputText value="Nombre:" />
+				<h:outputText value="#{label['customer.fisrtName']}" />
 				<h:inputText id="first_name" value="#{customerController.firstName}" />
 				<h:outputText value="Apellido" />
 				<h:inputText id="last_name" value="#{customerController.lastName}" />
 				<h:outputText value="Correo electrónico" />
 				<h:inputText id="email" value="#{customerController.email}" />
+				<h:outputText value="Direccion (completa)" />
+				<h:inputText id="address" value="#{customerController.address.address}" />
+				<h:outputText value="Ciudad" />
+				<h:selectOneMenu value="#{customerController.address.cityId}">
+					<f:selectItems
+						value="#{customerController.citiesList}"
+						var="city"
+						itemValue="#{city.cityId}" 
+						itemLabel="#{city.city}"/>
+				</h:selectOneMenu>
+				<h:outputText value="Distrito" />
+				<h:inputText id="district" value="#{customerController.address.district}" />
+				<h:outputText value="Codigo postal" />
+				<h:inputText id="postal_code" value="#{customerController.address.postalCode}" />
+				<h:outputText value="Telefono" />
+				<h:inputText id="phone" value="#{customerController.address.phone}" />
 				<h:commandButton value="Guardar"
 					action="#{customerController.save()}" />
+				<h:inputHidden value="#{customerController.customerId}"/>
 			</h:panelGrid>
 		</h:form>
 	</div>
@@ -40,7 +57,7 @@
 				</h:column>
 				<h:column>
 					<f:facet name="header">Dirección</f:facet>
-					<h:outputText value="#{customer.addressId}" />
+					<h:outputText value="#{customer.address.address}" />
 				</h:column>
 				<h:column>
 					<f:facet name="header">Activo</f:facet>
@@ -55,7 +72,7 @@
 					</h:commandLink>
 					<h:commandLink
 						id="updatelink"
-						action="#{customerController.update(customer.customerId)}">
+						action="#{customerController.loadCustomer(customer.customerId)}">
 						<h:outputText value="Actualizar" />
 					</h:commandLink>
 				</h:column>
