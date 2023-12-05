@@ -1,0 +1,7 @@
+org\banxico\proyecto3\jaxb\MainPelicula.class
+org\banxico\proyecto3\jaxb\Main.class
+org\banxico\proyecto3\jaxb\Empleado.class
+org\banxico\proyecto3\jaxb\Pelicula.class
+org\banxico\proyecto3\ws\ServiciosWeb.class
+org\banxico\proyecto3\jaxb\EmpleadoDateAdapter.class
+org\banxico\proyecto3\jaxb\Actor.class

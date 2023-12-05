@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<empleado id="1">
+    <nombre>Juan</nombre>
+    <apellido>Perez</apellido>
+    <fechaNacimiento>05-12-2023</fechaNacimiento>
+</empleado>

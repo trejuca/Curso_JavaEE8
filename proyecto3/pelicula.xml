@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<pelicula id="1">
+    <titulo>Titulo del a pelicula</titulo>
+    <genero>suspenso</genero>
+    <anioLanzamiento>2020</anioLanzamiento>
+    <actores>
+        <actor id="1">
+            <nombre>Actor1</nombre>
+            <fechaNacimiento>2023-12-05T12:17:49.473-06:00</fechaNacimiento>
+        </actor>
+        <actor id="2">
+            <nombre>Actor2</nombre>
+            <fechaNacimiento>2023-12-05T12:17:49.473-06:00</fechaNacimiento>
+        </actor>
+    </actores>
+</pelicula>
